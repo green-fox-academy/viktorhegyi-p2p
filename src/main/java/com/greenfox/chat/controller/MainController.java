@@ -1,6 +1,6 @@
 package com.greenfox.chat.controller;
 
-import com.greenfox.chat.model.User;
+import com.greenfox.chat.model.NameOfUser;
 import com.greenfox.chat.service.LogMessageService;
 import com.greenfox.chat.service.UserRepo;
 import javax.servlet.http.HttpServletRequest;
@@ -43,7 +43,7 @@ public class MainController {
 
   @PostMapping(value = "/add")
   public String addUser(String username) {
-    userRepo.save(new User(username));
+    userRepo.save(new NameOfUser(username));
     return "redirect:/";
   }
 
