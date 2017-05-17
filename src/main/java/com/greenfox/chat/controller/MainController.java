@@ -22,6 +22,7 @@ public class MainController {
 
   @Autowired
   LogMessageService logMessageService;
+
   @Autowired
   UserRepo userRepo;
 
@@ -35,9 +36,9 @@ public class MainController {
     return "index";
   }
 
-  @RequestMapping(value = "/register", method = RequestMethod.GET)
+  @RequestMapping(value = "/enter", method = RequestMethod.GET)
   public String register() {
-    return "register";
+    return "enter";
   }
 
   @PostMapping(value = "/add")

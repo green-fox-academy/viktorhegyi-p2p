@@ -7,10 +7,10 @@
 <body>
   <h1>Register</h1>
   <form th:action="@{/add}" method="post">
-    <span>Username:</span>
+    <span>Choose your name:</span>
     <!--/*@thymesVar id="username" type="com.greenfox.chat.model.User"*/-->
-    <input type="text" name="username" th:value="${username}"/>
-    <input type="submit" value="register">
+    <input type="text" name="username"/>
+    <input type="submit" value="enter"/>
   </form>
 </body>
 </html>
