@@ -1,7 +1,6 @@
 package com.greenfox.chat.service;
 
 import com.greenfox.chat.model.NameOfUser;
-import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 

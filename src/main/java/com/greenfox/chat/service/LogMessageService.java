@@ -2,7 +2,6 @@ package com.greenfox.chat.service;
 
 import com.greenfox.chat.model.LogMessage;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;

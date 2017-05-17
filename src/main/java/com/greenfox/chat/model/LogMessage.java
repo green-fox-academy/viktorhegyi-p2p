@@ -1,10 +1,6 @@
 package com.greenfox.chat.model;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import org.springframework.stereotype.Component;
-import sun.util.resources.LocaleData;
 
 /**
  * Created by Viktor on 2017-05-17.
