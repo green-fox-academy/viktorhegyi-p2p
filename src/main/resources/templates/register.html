@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Chat</title>
+  <meta charset="utf-8" />
+</head>
+<body>
+  <h1>Register</h1>
+  <form th:action="@{/add}" method="post">
+    <span>Username:</span>
+    <!--/*@thymesVar id="username" type="com.greenfox.chat.model.User"*/-->
+    <input type="text" name="username" th:value="${username}"/>
+    <input type="submit" value="register">
+  </form>
+</body>
+</html>

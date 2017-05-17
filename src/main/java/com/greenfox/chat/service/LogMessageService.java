@@ -54,4 +54,5 @@ public class LogMessageService {
         logMessage.getRequestData();
     System.out.println(infoString);
   }
+
 }
