@@ -43,6 +43,9 @@ public class MainController {
 
   @PostMapping(value = "/add")
   public String addUser(String username) {
+    if (username.equals("")) {
+      return "enter";
+    }
     userRepo.save(new NameOfUser(username));
     return "redirect:/";
   }
