@@ -7,13 +7,14 @@
 <body>
 <h1>Peer to Peer Chat program</h1>
 
-<span>Current username:</span>
-<span th:text="${user}"></span>
-
 <form th:action="@{/enter}" method="post">
   <span>Your username:</span>
-  <input type="text" name="username"/>
+  <input type="text" th:value="${user}" name="username"/>
   <input type="submit" value="update"/>
+</form>
+<form th:action="@{/send}" method="post">
+  <textarea name="message" rows="5" cols="30">Write your message</textarea>
+  <input type="submit" value="send"/>
 </form>
 </body>
 </html>
