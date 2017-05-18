@@ -12,8 +12,16 @@
   <input type="text" th:value="${user}" name="username"/>
   <input type="submit" value="update"/>
 </form>
+ <ul>
+    <li>App</li>
+    <span>Hi there! Submit your message using the send button!</span>
+ </ul>
+ <ul th:each="message : ${messages}">
+   <li th:text="${message.username}"></li>
+   <span th:text="${message.text}"></span>
+ </ul>
 <form th:action="@{/send}" method="post">
-  <textarea name="message" rows="5" cols="30">Write your message</textarea>
+  <textarea text="text" name="currentMessage" rows="5" cols="30"></textarea>
   <input type="submit" value="send"/>
 </form>
 </body>

@@ -3,8 +3,9 @@ package com.greenfox.chat.controller;
 import com.greenfox.chat.model.Message;
 import com.greenfox.chat.model.NameOfUser;
 import com.greenfox.chat.service.LogMessageService;
+import com.greenfox.chat.service.MessageRepo;
 import com.greenfox.chat.service.UserRepo;
-import java.util.List;
+import java.sql.Timestamp;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,10 @@ public class MainController {
   UserRepo userRepo;
   @Autowired
   NameOfUser nameOfUser;
+  @Autowired
+  MessageRepo messageRepo;
+  @Autowired
+  Message message;
 
   @ModelAttribute
   private void logInfo(HttpServletRequest httpServletRequest) {
@@ -35,6 +40,7 @@ public class MainController {
   @RequestMapping(value = "/", method = RequestMethod.GET)
   public String index(Model model, String username) {
     model.addAttribute("user", userRepo.findOne(1l));
+    model.addAttribute("messages", messageRepo.findAll());
     return "index";
   }
 
@@ -55,9 +61,13 @@ public class MainController {
   }
 
   @PostMapping(value = "/send")
-  public String sendMessage(String message) {
-
-    return "index";
+  public String sendMessage(String currentMessage) {
+    message.setId();
+    message.setUsername(nameOfUser.getNameOfUser());
+    message.setText(currentMessage);
+    message.setTimestamp(new Timestamp(System.currentTimeMillis()));
+    messageRepo.save(message);
+    return "redirect:/";
   }
 
 }
