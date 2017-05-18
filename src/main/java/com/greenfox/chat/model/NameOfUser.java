@@ -4,16 +4,27 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by Viktor on 2017-05-17.
  */
 @Entity
+@Component
 public class NameOfUser {
+
+  public void setId(long id) {
+    this.id = id;
+  }
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
+
+  @Override
+  public String toString() {
+    return nameOfUser;
+  }
 
   private String nameOfUser;
 
@@ -32,4 +43,10 @@ public class NameOfUser {
   public NameOfUser(String nameOfUser) {
     this.nameOfUser = nameOfUser;
   }
+
+  public NameOfUser() {
+
+  }
+
+
 }

@@ -6,6 +6,7 @@ import com.greenfox.chat.service.UserRepo;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +20,10 @@ public class MainController {
 
   @Autowired
   LogMessageService logMessageService;
-
   @Autowired
   UserRepo userRepo;
+  @Autowired
+  NameOfUser nameOfUser;
 
   @ModelAttribute
   private void logInfo(HttpServletRequest httpServletRequest) {
@@ -29,7 +31,8 @@ public class MainController {
   }
 
   @RequestMapping(value = "/", method = RequestMethod.GET)
-  public String index() {
+  public String index(Model model) {
+    model.addAttribute("user", userRepo.findOne(1l));
     return "index";
   }
 
@@ -38,12 +41,14 @@ public class MainController {
     return "enter";
   }
 
-  @PostMapping(value = "/add")
+  @PostMapping(value = "/enter")
   public String addUser(String username) {
     if (username.equals("")) {
-      return "enter";
+      return "error";
     }
-    userRepo.save(new NameOfUser(username));
+    nameOfUser.setId(1l);
+    nameOfUser.setNameOfUser(username);
+    userRepo.save(nameOfUser);
     return "redirect:/";
   }
 
