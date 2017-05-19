@@ -1,13 +1,12 @@
 package com.greenfox.chat.model;
 
-import com.greenfox.chat.service.JsonService;
 import org.springframework.stereotype.Component;
 
 /**
  * Created by Viktor on 2017-05-18.
  */
 @Component
-public class Status extends JsonService{
+public class Status {
 
   private String status;
 

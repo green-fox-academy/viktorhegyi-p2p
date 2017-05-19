@@ -26,5 +26,6 @@ public class Json extends JsonService {
     this.client = client;
   }
 
-
+  public Json() {
+  }
 }
