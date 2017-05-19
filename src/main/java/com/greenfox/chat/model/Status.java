@@ -19,8 +19,4 @@ public class Status extends JsonService{
     return status;
   }
 
-  public void checkStatus(Json json) {
-    if(json.getMessage().getId().);
-  }
-
 }
