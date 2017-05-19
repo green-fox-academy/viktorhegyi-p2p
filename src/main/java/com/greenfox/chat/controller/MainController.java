@@ -63,7 +63,7 @@ public class MainController {
     return "redirect:/";
   }
 
-  String url = "http://p2p-chat-seed0forever.herokuapp.com/api/message/receive";
+  String url = "https://peertopeerchatapp.herokuapp.com/api/message/receive";
   RestTemplate restTemplate = new RestTemplate();
 
   @PostMapping(value = "/send")
@@ -79,7 +79,7 @@ public class MainController {
     json.setMessage(message);
     json.setClient(client);
 
-    Json newPost = restTemplate.postForObject(url, json, Json.class);
+    restTemplate.postForObject(url, json, Json.class);
 
     return "redirect:/";
   }
