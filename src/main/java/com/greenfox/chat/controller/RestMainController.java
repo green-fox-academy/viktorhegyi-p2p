@@ -28,7 +28,7 @@ public class RestMainController {
   @CrossOrigin("*")
   @PostMapping("/api/message/receive")
   public Status jsonInput(@RequestBody Json json) {
-    //messageRepo.save(json.getMessage());
+    messageRepo.save(json.getMessage());
     status.setStatus("ok");
     return status;
   }
