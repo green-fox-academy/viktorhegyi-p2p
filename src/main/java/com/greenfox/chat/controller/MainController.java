@@ -63,7 +63,7 @@ public class MainController {
     return "redirect:/";
   }
 
-  String url = "https://peertopeerchatapp.herokuapp.com/api/message/receive";
+  String url = "https://phorv1chatapp.herokuapp.com/api/message/receive";
   RestTemplate restTemplate = new RestTemplate();
 
   @PostMapping(value = "/send")
@@ -73,6 +73,7 @@ public class MainController {
     message.setText(currentMessage);
     message.setTimestamp(new Timestamp(System.currentTimeMillis()));
     messageRepo.save(message);
+
     Client client = new Client();
     client.setId("Viktor");
     Json json = new Json();
