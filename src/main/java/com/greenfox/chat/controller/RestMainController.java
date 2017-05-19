@@ -1,5 +1,13 @@
 package com.greenfox.chat.controller;
 
+import com.greenfox.chat.model.Json;
+import com.greenfox.chat.model.Status;
+import com.greenfox.chat.service.JsonService;
+import com.greenfox.chat.repository.MessageRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -7,5 +15,18 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class RestMainController {
+
+  @Autowired
+  MessageRepo messageRepo;
+  @Autowired
+  Status status;
+
+  @CrossOrigin("*")
+  @PostMapping("/api/message/receive")
+  public JsonService jsonInput(@RequestBody Json json) {
+    messageRepo.save(json.getMessage());
+    status.setStatus("ok");
+    return status;
+  }
 
 }

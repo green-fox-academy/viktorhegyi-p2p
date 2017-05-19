@@ -1,4 +1,4 @@
-package com.greenfox.chat.service;
+package com.greenfox.chat.repository;
 
 import com.greenfox.chat.model.Message;
 import org.springframework.data.repository.CrudRepository;
