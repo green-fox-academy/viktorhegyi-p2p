@@ -23,4 +23,8 @@ public class Client {
     this.id = message.getUsername();
   }
 
+  public void setId(String id) {
+    this.id = id;
+  }
+
 }

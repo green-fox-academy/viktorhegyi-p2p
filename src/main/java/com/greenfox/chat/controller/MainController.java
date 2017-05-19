@@ -1,5 +1,7 @@
 package com.greenfox.chat.controller;
 
+import com.greenfox.chat.model.Client;
+import com.greenfox.chat.model.Json;
 import com.greenfox.chat.model.Message;
 import com.greenfox.chat.model.NameOfUser;
 import com.greenfox.chat.service.LogMessageService;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * Created by Viktor on 2017-05-17.
@@ -60,6 +63,9 @@ public class MainController {
     return "redirect:/";
   }
 
+  String url = "http://p2p-chat-seed0forever.herokuapp.com/api/message/receive";
+  RestTemplate restTemplate = new RestTemplate();
+
   @PostMapping(value = "/send")
   public String sendMessage(String currentMessage) {
     message.setId();
@@ -67,6 +73,14 @@ public class MainController {
     message.setText(currentMessage);
     message.setTimestamp(new Timestamp(System.currentTimeMillis()));
     messageRepo.save(message);
+    Client client = new Client();
+    client.setId("Viktor");
+    Json json = new Json();
+    json.setMessage(message);
+    json.setClient(client);
+
+    Json newPost = restTemplate.postForObject(url, json, Json.class);
+
     return "redirect:/";
   }
 
