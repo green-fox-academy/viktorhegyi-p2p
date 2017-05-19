@@ -25,11 +25,16 @@ public class RestMainController {
   @Autowired
   Status status;
 
+  String url = "http://p2p-chat-seed0forever.herokuapp.com/api/message/receive";
+  RestTemplate restTemplate = new RestTemplate();
+
   @CrossOrigin("*")
   @PostMapping("/api/message/receive")
   public Status jsonInput(@RequestBody Json json) {
     messageRepo.save(json.getMessage());
     status.setStatus("ok");
+    restTemplate.postForObject(url, json, Json.class);
+
     return status;
   }
 
