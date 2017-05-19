@@ -33,7 +33,6 @@ public class RestMainController {
   public Status jsonInput(@RequestBody Json json) {
     messageRepo.save(json.getMessage());
     status.setStatus("ok");
-    restTemplate.postForObject(url, json, Json.class);
 
     return status;
   }
