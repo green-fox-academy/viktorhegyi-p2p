@@ -41,7 +41,7 @@ public class MainController {
   }
 
   @RequestMapping(value = "/", method = RequestMethod.GET)
-  public String index(Model model, String username) {
+  public String index(Model model) {
     model.addAttribute("user", userRepo.findOne(1l));
     model.addAttribute("messages", messageRepo.findAll());
     return "index";
@@ -63,7 +63,7 @@ public class MainController {
     return "redirect:/";
   }
 
-  String url = "https://phorv1chatapp.herokuapp.com/api/message/receive";
+  String url = "https://greenfox-chat-app.herokuapp.com/api/message/receive";
   RestTemplate restTemplate = new RestTemplate();
 
   @PostMapping(value = "/send")
