@@ -15,6 +15,10 @@ public class Status {
   private String status;
   private String message;
 
+  public String getMessage() {
+    return message;
+  }
+
   public void setStatus(String status) {
     this.status = status;
   }
@@ -30,6 +34,5 @@ public class Status {
     }
     this.message = this.message.substring(0, this.message.length() - 2);
   }
-
 
 }
