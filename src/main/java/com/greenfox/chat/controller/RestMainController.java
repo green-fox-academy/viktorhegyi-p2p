@@ -21,13 +21,12 @@ public class RestMainController {
 
   @Autowired
   MessageRepo messageRepo;
-  @Autowired
-  Status status;
 
   @CrossOrigin("*")
   @PostMapping("/api/message/receive")
   public Status jsonInput(@RequestBody Json json) {
     List<String> errors = new ArrayList<>();
+    Status status = new Status();
 
     if (StringUtils.isEmpty(json.getMessage().getText())) {
       errors.add("message.text");

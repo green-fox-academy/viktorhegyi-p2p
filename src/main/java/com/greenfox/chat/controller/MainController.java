@@ -60,7 +60,7 @@ public class MainController {
     return "redirect:/";
   }
 
-  String url = "https://peertopeerchat.herokuapp.com/api/message/receive";
+  String url = System.getenv("CHAT_APP_PEER_ADDRESSS");
   RestTemplate restTemplate = new RestTemplate();
 
   @PostMapping(value = "/send")
@@ -72,6 +72,7 @@ public class MainController {
     messageRepo.save(message);
 
     Client client = new Client();
+    client.setId(System.getenv("CHAT_APP_UNIQUE_ID"));
     Json json = new Json();
     json.setMessage(message);
     json.setClient(client);

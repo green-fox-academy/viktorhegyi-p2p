@@ -5,7 +5,7 @@ package com.greenfox.chat.model;
  */
 public class Client {
 
-  private String id = "viktorhegyi";
+  private String id;
 
   public Client(String id) {
     this.id = id;
