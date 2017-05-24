@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * Created by Viktor on 2017-05-17.
@@ -22,9 +23,13 @@ public class RestMainController {
   @Autowired
   MessageRepo messageRepo;
 
+  String url = System.getenv("CHAT_APP_PEER_ADDRESSS");
+  RestTemplate restTemplate = new RestTemplate();
+
   @CrossOrigin("*")
   @PostMapping("/api/message/receive")
   public Status jsonInput(@RequestBody Json json) {
+    restTemplate.postForObject(url, json, Json.class);
     List<String> errors = new ArrayList<>();
     Status status = new Status();
 
@@ -44,13 +49,17 @@ public class RestMainController {
       errors.add("client.id");
     }
 
-    if (errors.size() == 0) {
+    if (!json.getClient().getId().equals(System.getenv("CHAT_APP_UNIQUE_ID"))) {
+      if (errors.size() == 0) {
+        status.setStatus("ok");
+        messageRepo.save(json.getMessage());
+      } else {
+        status.setStatus("error");
+        status.setErrorMessage(errors);
+      }
+    } else
       status.setStatus("ok");
-      messageRepo.save(json.getMessage());
-    } else {
-      status.setStatus("error");
-      status.setErrorMessage(errors);
-    }
+
     return status;
   }
 
