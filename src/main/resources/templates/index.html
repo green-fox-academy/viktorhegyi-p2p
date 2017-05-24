@@ -3,6 +3,7 @@
 <head>
   <title>Chat</title>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta http-equiv="refresh" content="30"/>
   <link rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -10,43 +11,44 @@
         crossorigin="anonymous"/>
 </head>
 <body>
-  <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
-      <h1 class="text-center">Peer to Peer Chat program</h1>
-      <form th:action="@{/enter}" method="post">
-        <span>Your username:</span>
-        <input type="text" th:value="${user}" name="username"/>
-        <input type="submit" class="btn btn-success" value="update"/>
-      </form>
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <h1 class="text-center">Peer to Peer Chat program</h1>
+        <form th:action="@{/enter}" method="post">
+          <span>Your username:</span>
+          <input type="text" th:value="${user}" name="username"/>
+          <input type="submit" class="btn btn-success" value="update"/>
+        </form>
+      </div>
+      <div class="col-md-3"></div>
     </div>
-    <div class="col-md-3"></div>
-  </div>
-  <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
-        <ul>
-              <li>App</li>
-              <span>Hi there! Submit your message using the send button!</span>
-              <form th:action="@{/send}" method="post">
-                <textarea text="text" name="currentMessage" rows="3" cols="50"></textarea>
-                <input type="submit" class="btn btn-primary" value="send"/>
-              </form>
-              <form th:action="@{/}" >
-                <input type="submit" class="btn btn-info" value="refresh"/>
-              </form>
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+          <ul>
+                <li>App</li>
+                <span>Hi there! Submit your message using the send button!</span>
+                <form th:action="@{/send}" method="post">
+                  <textarea text="text" name="currentMessage" rows="3" cols="50"></textarea>
+                  <input type="submit" class="btn btn-primary" value="send"/>
+                </form>
+                <form th:action="@{/}" >
+                  <input type="submit" class="btn btn-info" value="refresh"/>
+                </form>
 
-        </ul>
-      <table class="table table-striped">
-        <ul th:each="message : ${messages}">
-          <li th:text="${message.username}"></li>
-          <span th:text="${message.text}"></span>
-        </ul>
-      </table>
+          </ul>
+        <table class="table table-striped">
+          <ul th:each="message : ${messages}">
+            <li th:text="${message.username}"></li>
+            <span th:text="${message.text}"></span>
+          </ul>
+        </table>
+      </div>
+      <div class="col-md-3">
+      </div>
     </div>
-    <div class="col-md-3">
-    </div>
-  </div>
+
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>

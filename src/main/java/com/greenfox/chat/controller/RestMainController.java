@@ -1,7 +1,6 @@
 package com.greenfox.chat.controller;
 
 import com.greenfox.chat.model.Json;
-import com.greenfox.chat.model.Message;
 import com.greenfox.chat.model.Status;
 import com.greenfox.chat.repository.MessageRepo;
 import java.util.ArrayList;
