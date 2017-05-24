@@ -42,6 +42,8 @@
           <ul th:each="message : ${messages}">
             <li th:text="${message.username}"></li>
             <span th:text="${message.text}"></span>
+            <p></p>
+            <span th:text="${message.timestamp}"></span>
           </ul>
         </table>
       </div>
