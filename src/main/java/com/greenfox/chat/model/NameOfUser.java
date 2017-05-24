@@ -13,20 +13,23 @@ import org.springframework.stereotype.Component;
 @Component
 public class NameOfUser {
 
-  public void setId(long id) {
-    this.id = id;
-  }
+  private String nameOfUser;
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
 
-  @Override
-  public String toString() {
-    return nameOfUser;
+  public NameOfUser(String nameOfUser) {
+    this.nameOfUser = nameOfUser;
   }
 
-  private String nameOfUser;
+  public NameOfUser() {
+
+  }
+
+  public void setId(long id) {
+    this.id = id;
+  }
 
   public String getNameOfUser() {
     return nameOfUser;
@@ -40,13 +43,9 @@ public class NameOfUser {
     return id;
   }
 
-  public NameOfUser(String nameOfUser) {
-    this.nameOfUser = nameOfUser;
+  @Override
+  public String toString() {
+    return nameOfUser;
   }
-
-  public NameOfUser() {
-
-  }
-
 
 }

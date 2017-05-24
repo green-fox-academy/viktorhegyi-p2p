@@ -43,7 +43,7 @@ public class MainController {
   @RequestMapping(value = "/", method = RequestMethod.GET)
   public String index(Model model) {
     model.addAttribute("user", userRepo.findOne(1l));
-    model.addAttribute("messages", messageRepo.findAll());
+    model.addAttribute("messages", messageRepo.findAllByOrderByTimestampDesc());
     return "index";
   }
 
@@ -54,28 +54,24 @@ public class MainController {
 
   @PostMapping(value = "/enter")
   public String addUser(String username) {
-    if (username.equals("")) {
-      return "error";
-    }
     nameOfUser.setId(1l);
     nameOfUser.setNameOfUser(username);
     userRepo.save(nameOfUser);
     return "redirect:/";
   }
 
-  String url = "https://greenfox-chat-app.herokuapp.com/api/message/receive";
+  String url = "https://peertopeerchat.herokuapp.com/api/message/receive";
   RestTemplate restTemplate = new RestTemplate();
 
   @PostMapping(value = "/send")
   public String sendMessage(String currentMessage) {
     message.setId();
-    message.setUsername(nameOfUser.getNameOfUser());
+    message.setUsername(userRepo.findOne(1l).toString());
     message.setText(currentMessage);
     message.setTimestamp(new Timestamp(System.currentTimeMillis()));
     messageRepo.save(message);
 
     Client client = new Client();
-    client.setId("Viktor");
     Json json = new Json();
     json.setMessage(message);
     json.setClient(client);

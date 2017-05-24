@@ -1,9 +1,13 @@
 package com.greenfox.chat.controller;
 
 import com.greenfox.chat.model.Json;
+import com.greenfox.chat.model.Message;
 import com.greenfox.chat.model.Status;
 import com.greenfox.chat.repository.MessageRepo;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,8 +28,31 @@ public class RestMainController {
   @PostMapping("/api/message/receive")
   public Status jsonInput(@RequestBody Json json) {
     messageRepo.save(json.getMessage());
-    status.setStatus("ok");
 
+    List<String> errors = new ArrayList<>();
+
+    if (StringUtils.isEmpty(json.getMessage().getText())) {
+      errors.add("message.text");
+    }
+    if (StringUtils.isEmpty(json.getMessage().getUsername())) {
+      errors.add("message.username");
+    }
+    if (StringUtils.isEmpty(json.getMessage().getTimestamp())) {
+      errors.add("message.timestamp");
+    }
+    if (StringUtils.isEmpty(json.getMessage().getId())) {
+      errors.add("message.id");
+    }
+    if (StringUtils.isEmpty(json.getClient().getId())) {
+      errors.add("client.id");
+    }
+
+    if (errors.size() == 0) {
+      status.setStatus("ok");
+    } else {
+      status.setStatus("error");
+      status.setMessage(errors);
+    }
     return status;
   }
 
