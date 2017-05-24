@@ -22,13 +22,13 @@ public class RestMainController {
   @Autowired
   MessageRepo messageRepo;
 
-  String url = System.getenv("CHAT_APP_PEER_ADDRESSS");
+  String url = "https://phorv1chatapp.herokuapp.com/api/message/receive";
   RestTemplate restTemplate = new RestTemplate();
 
   @CrossOrigin("*")
   @PostMapping("/api/message/receive")
   public Status jsonInput(@RequestBody Json json) {
-    restTemplate.postForObject(url, json, Json.class);
+    //restTemplate.postForObject(url, json, Json.class);
     List<String> errors = new ArrayList<>();
     Status status = new Status();
 

@@ -60,7 +60,7 @@ public class MainController {
     return "redirect:/";
   }
 
-  String url = System.getenv("CHAT_APP_PEER_ADDRESSS");
+  String url = "https://phorv1chatapp.herokuapp.com/api/message/receive";
   RestTemplate restTemplate = new RestTemplate();
 
   @PostMapping(value = "/send")
