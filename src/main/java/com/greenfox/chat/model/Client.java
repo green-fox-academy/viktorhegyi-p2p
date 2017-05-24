@@ -19,10 +19,6 @@ public class Client {
     return id;
   }
 
-  public void setId(Message message) {
-    this.id = message.getUsername();
-  }
-
   public void setId(String id) {
     this.id = id;
   }

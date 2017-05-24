@@ -27,8 +27,6 @@ public class RestMainController {
   @CrossOrigin("*")
   @PostMapping("/api/message/receive")
   public Status jsonInput(@RequestBody Json json) {
-    messageRepo.save(json.getMessage());
-
     List<String> errors = new ArrayList<>();
 
     if (StringUtils.isEmpty(json.getMessage().getText())) {
@@ -49,9 +47,10 @@ public class RestMainController {
 
     if (errors.size() == 0) {
       status.setStatus("ok");
+      messageRepo.save(json.getMessage());
     } else {
       status.setStatus("error");
-      status.setMessage(errors);
+      status.setErrorMessage(errors);
     }
     return status;
   }

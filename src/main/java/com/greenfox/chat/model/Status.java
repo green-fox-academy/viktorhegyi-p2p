@@ -15,6 +15,10 @@ public class Status {
   private String status;
   private String message;
 
+  public void setMessage(String message) {
+    this.message = message;
+  }
+
   public String getMessage() {
     return message;
   }
@@ -27,7 +31,7 @@ public class Status {
     return status;
   }
 
-  public void setMessage(List<String> message) {
+  public void setErrorMessage(List<String> message) {
     this.message = "Missing field(s): ";
     for (String entry : message) {
       this.message += entry + ", ";
