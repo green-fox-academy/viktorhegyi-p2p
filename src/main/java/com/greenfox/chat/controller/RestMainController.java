@@ -28,7 +28,7 @@ public class RestMainController {
   @CrossOrigin("*")
   @PostMapping("/api/message/receive")
   public Status jsonInput(@RequestBody Json json) {
-    restTemplate.postForObject(url, json, Json.class);
+    //restTemplate.postForObject(url, json, Json.class);
     List<String> errors = new ArrayList<>();
     Status status = new Status();
 
