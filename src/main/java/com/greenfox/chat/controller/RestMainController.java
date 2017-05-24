@@ -28,7 +28,7 @@ public class RestMainController {
   @CrossOrigin("*")
   @PostMapping("/api/message/receive")
   public Status jsonInput(@RequestBody Json json) {
-    //restTemplate.postForObject(url, json, Json.class);
+    restTemplate.postForObject(url, json, Json.class);
     List<String> errors = new ArrayList<>();
     Status status = new Status();
 
@@ -48,7 +48,7 @@ public class RestMainController {
       errors.add("client.id");
     }
 
-    if (!json.getClient().getId().equals(System.getenv("CHAT_APP_UNIQUE_ID"))) {
+    if (!json.getClient().getId().equals("viktorhegyi")) {
       if (errors.size() == 0) {
         status.setStatus("ok");
         messageRepo.save(json.getMessage());

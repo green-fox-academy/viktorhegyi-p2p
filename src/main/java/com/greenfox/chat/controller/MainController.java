@@ -72,7 +72,7 @@ public class MainController {
     messageRepo.save(message);
 
     Client client = new Client();
-    client.setId(System.getenv("CHAT_APP_UNIQUE_ID"));
+    client.setId("viktorhegyi");
     Json json = new Json();
     json.setMessage(message);
     json.setClient(client);
