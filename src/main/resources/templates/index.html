@@ -15,37 +15,54 @@
       <div class="col-md-3"></div>
       <div class="col-md-6">
         <h1 class="text-center">Peer to Peer Chat program</h1>
-        <form th:action="@{/enter}" method="post">
-          <span>Your username:</span>
-          <input type="text" th:value="${user}" name="username"/>
-          <input type="submit" class="btn btn-success" value="update"/>
-        </form>
+        <div class="panel panel-default">
+          <div class="panel-heading">User</div>
+          <div class="panel-body">
+            <form th:action="@{/enter}" method="post">
+              <span>Your username:</span>
+              <input type="text" th:value="${user}" name="username"/>
+              <input type="submit" class="btn btn-success" value="update"/>
+            </form>
+          </div>
+        </div>
       </div>
       <div class="col-md-3"></div>
     </div>
     <div class="row">
-      <div class="col-md-3"></div>
+      <div class="col-md-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">Your message</div>
+          <div class="panel-body">
+            <form th:action="@{/send}" method="post">
+              <textarea text="text" name="currentMessage" rows="3" cols="40"></textarea>
+              <input type="submit" class="btn btn-primary" value="send"/>
+            </form>
+          </div>
+        </div>
+      </div>
       <div class="col-md-6">
-          <ul>
-                <li>App</li>
-                <span>Hi there! Submit your message using the send button!</span>
-                <form th:action="@{/send}" method="post">
-                  <textarea text="text" name="currentMessage" rows="3" cols="50"></textarea>
-                  <input type="submit" class="btn btn-primary" value="send"/>
-                </form>
-                <form th:action="@{/}" >
-                  <input type="submit" class="btn btn-info" value="refresh"/>
-                </form>
-
-          </ul>
+        <div class="panel panel-default">
+              <div class="panel-heading">Chat
+                <div class="text-center">
+                  <form th:action="@{/}" >
+                    <input type="submit" class="btn btn-info" value="refresh"/>
+                  </form>
+                </div>
+              </div>
+            <div class="panel-body">
         <table class="table table-striped">
           <ul th:each="message : ${messages}">
-            <li th:text="${message.username}"></li>
-            <span th:text="${message.text}"></span>
-            <p></p>
+            <li  th:text="${message.text}"></li>
+            <span>Sent by</span>
+            <mark>
+              <span th:text="${message.username}"></span>
+            </mark>
+            <span>at</span>
             <span th:text="${message.timestamp}"></span>
           </ul>
         </table>
+        </div>
+      </div>
       </div>
       <div class="col-md-3">
       </div>
