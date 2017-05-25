@@ -22,7 +22,7 @@ public class RestMainController {
   @Autowired
   MessageRepo messageRepo;
 
-  String url = "https://lit-caverns-63725.herokuapp.com/api/message/receive";
+  String url = "https://nokecskes-p2p.herokuapp.com/api/message/receive";
   RestTemplate restTemplate = new RestTemplate();
 
   @CrossOrigin("*")

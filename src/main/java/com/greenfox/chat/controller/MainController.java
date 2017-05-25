@@ -60,7 +60,7 @@ public class MainController {
     return "redirect:/";
   }
 
-  String url = "https://lit-caverns-63725.herokuapp.com/api/message/receive";
+  String url = "https://nokecskes-p2p.herokuapp.com/api/message/receive";
   RestTemplate restTemplate = new RestTemplate();
 
   @PostMapping(value = "/send")
