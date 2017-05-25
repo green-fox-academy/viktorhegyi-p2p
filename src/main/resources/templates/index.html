@@ -41,14 +41,19 @@
                   <textarea text="text" name="currentMessage"></textarea>
                   <p></p>
                   <input type="submit" class="btn btn-danger" value="send"/>
-                  <a class="glyphicon glyphicon-refresh btn btn-default" type="submit" href="/"></a>
                 </form>
               </div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="panel panel-info">
-              <div class="panel-heading">Chat</div>
+              <div class="panel-heading">
+                <div>Chat
+                  <div class="text-right">
+                    <a class="glyphicon glyphicon-refresh" type="submit" href="/"></a>
+                  </div>
+                </div>
+              </div>
               <div id="scroll" style="overflow-y: scroll; max-height: 450px" class="panel-body">
                   <div th:each="message : ${messages}">
                     <div class="panel panel-info">
