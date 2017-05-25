@@ -35,6 +35,8 @@ public class MainController {
   @Autowired
   Message message;
 
+  RestTemplate restTemplate = new RestTemplate();
+
   @ModelAttribute
   private void logInfo(HttpServletRequest httpServletRequest) {
     logMessageService.getInfo(httpServletRequest);
@@ -60,9 +62,6 @@ public class MainController {
     return "redirect:/";
   }
 
-  String url = "https://nokecskes-p2p.herokuapp.com/api/message/receive";
-  RestTemplate restTemplate = new RestTemplate();
-
   @PostMapping(value = "/send")
   public String sendMessage(String currentMessage) {
     message.setId();
@@ -72,13 +71,13 @@ public class MainController {
     messageRepo.save(message);
 
     Client client = new Client();
-    client.setId("viktorhegyi");
+    client.setId(System.getenv("CHAT_APP_UNIQUE_ID"));
     Json json = new Json();
     json.setMessage(message);
     json.setClient(client);
 
     try{
-      restTemplate.postForObject(url, json, Json.class);
+      restTemplate.postForObject(System.getenv("CHAT_APP_PEER_ADDRESSS"), json, Json.class);
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }

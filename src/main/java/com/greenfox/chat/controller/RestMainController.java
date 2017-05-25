@@ -22,7 +22,6 @@ public class RestMainController {
   @Autowired
   MessageRepo messageRepo;
 
-  String url = "https://nokecskes-p2p.herokuapp.com/api/message/receive";
   RestTemplate restTemplate = new RestTemplate();
 
   @CrossOrigin("*")
@@ -31,7 +30,7 @@ public class RestMainController {
 
     if (!json.getClient().getId().equals("viktorhegyi")) {
       try {
-        restTemplate.postForObject(url, json, Json.class);
+        restTemplate.postForObject(System.getenv("CHAT_APP_PEER_ADDRESSS"), json, Json.class);
       } catch (Exception e) {
         System.out.println(e.getMessage());
       }
