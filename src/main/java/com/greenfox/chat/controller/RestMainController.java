@@ -22,13 +22,19 @@ public class RestMainController {
   @Autowired
   MessageRepo messageRepo;
 
-  String url = "https://reka-greenfox-p2pchatapp.herokuapp.com/api/message/receive";
+  String url = "https://phorv1chatapp.herokuapp.com/api/message/receive";
   RestTemplate restTemplate = new RestTemplate();
 
   @CrossOrigin("*")
   @PostMapping("/api/message/receive")
   public Status jsonInput(@RequestBody Json json) {
-    restTemplate.postForObject(url, json, Json.class);
+
+    try{
+      restTemplate.postForObject(url, json, Json.class);
+    } catch (Exception e) {
+      System.out.println(e);
+    }
+
     List<String> errors = new ArrayList<>();
     Status status = new Status();
 

@@ -60,7 +60,7 @@ public class MainController {
     return "redirect:/";
   }
 
-  String url = "https://reka-greenfox-p2pchatapp.herokuapp.com/api/message/receive";
+  String url = "https://phorv1chatapp.herokuapp.com/api/message/receive";
   RestTemplate restTemplate = new RestTemplate();
 
   @PostMapping(value = "/send")
@@ -77,7 +77,11 @@ public class MainController {
     json.setMessage(message);
     json.setClient(client);
 
-    restTemplate.postForObject(url, json, Json.class);
+    try{
+      restTemplate.postForObject(url, json, Json.class);
+    } catch (Exception e) {
+      System.out.println(e);
+    }
 
     return "redirect:/";
   }
