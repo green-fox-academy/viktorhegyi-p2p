@@ -49,18 +49,18 @@
           <div class="col-md-6">
             <div class="panel panel-info">
               <div class="panel-heading">Chat</div>
-              <div class="panel-body">
-                <div th:each="message : ${messages}">
-                  <div class="panel panel-info">
-                    <div class="panel-heading" th:text="${message.username}"></div>
-                    <div class="panel-body">
-                      <span th:text="${message.text}"></span>
-                      <div class="text-right">
-                        <span th:text="${message.timestamp}"></span>
+              <div id="scroll" style="overflow-y: scroll; max-height: 450px" class="panel-body">
+                  <div th:each="message : ${messages}">
+                    <div class="panel panel-info">
+                      <div class="panel-heading" th:text="${message.username}"></div>
+                      <div class="panel-body">
+                       <span th:text="${message.text}"></span>
+                        <div class="text-right">
+                          <span th:text="${message.timestamp}"></span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
               </div>
             </div>
           </div>
