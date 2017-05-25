@@ -85,4 +85,10 @@ public class MainController {
     return "redirect:/";
   }
 
+  @RequestMapping(value = "/delete")
+  public String delete() {
+    messageRepo.deleteAll();
+    return "redirect:/";
+  }
+
 }

@@ -20,11 +20,15 @@
           <div class="col-md-3"></div>
           <div class="col-md-6">
             <div class="panel panel-success">
-              <div class="panel-heading">User</div>
+              <div class="panel-heading">
+                <span>User</span>
+                <span><small>logged in as</small></span>
+                <span th:text="${user}"></span>
+              </div>
               <div class="panel-body">
                 <form th:action="@{/enter}" method="post">
                   <span>Your username:</span>
-                  <input type="text" th:value="${user}" name="username"/>
+                  <input type="text" name="username" th:placeholder="${user}"/>
                   <input type="submit" class="btn btn-success" value="update"/>
                 </form>
               </div>
@@ -38,7 +42,7 @@
               <div class="panel-heading">Your message</div>
               <div class="panel-body">
                 <form th:action="@{/send}" method="post">
-                  <textarea text="text" name="currentMessage"></textarea>
+                  <textarea text="text" name="currentMessage" placeholder="Write your message"></textarea>
                   <p></p>
                   <input type="submit" class="btn btn-danger" value="send"/>
                 </form>
@@ -49,8 +53,9 @@
             <div class="panel panel-info">
               <div class="panel-heading">
                 <div>Chat
+                  <a class="glyphicon glyphicon-refresh" type="submit" href="/"></a>
                   <div class="text-right">
-                    <a class="glyphicon glyphicon-refresh" type="submit" href="/"></a>
+                    <a th:href="@{/delete}" class="btn btn-danger">ClearAll</a>
                   </div>
                 </div>
               </div>
@@ -61,7 +66,9 @@
                       <div class="panel-body">
                        <span th:text="${message.text}"></span>
                         <div class="text-right">
-                          <span th:text="${message.timestamp}"></span>
+                          <small>
+                            <span th:text="${message.timestamp}"></span>
+                          </small>
                         </div>
                       </div>
                     </div>
@@ -73,9 +80,9 @@
             <div class="panel panel-warning">
               <div class="panel-heading">Users</div>
               <div class="panel-body">
-                <ul th:each="message : ${messages}">
-                  <li th:text="${message.username}"></li>
-                </ul>
+                <span th:each="message : ${messages}">
+                  <p class="bg-warning text-center" th:text="${message.username}"></p>
+                </span>
               </div>
           </div>
         </div>
