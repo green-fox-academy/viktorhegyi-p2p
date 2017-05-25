@@ -65,9 +65,17 @@
              </div>
           </div>
           <div class="col-md-3">
+            <div class="panel panel-default">
+              <div class="panel-heading">Users</div>
+              <div class="panel-body">
+                <ul th:each="message : ${messages}">
+                  <li th:text="${message.username}"></li>
+                </ul>
+              </div>
           </div>
         </div>
       </div>
+    </div>
     </div>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
