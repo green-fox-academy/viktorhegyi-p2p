@@ -11,7 +11,7 @@
         crossorigin="anonymous"/>
 </head>
 <body>
-    <div class="panel panel-default">
+    <div class="panel panel-primary">
       <div class="panel-heading">
         <h3>Peer to Peer Chat program</h3>
       </div>
@@ -19,7 +19,7 @@
         <div class="row">
           <div class="col-md-3"></div>
           <div class="col-md-6">
-            <div class="panel panel-default">
+            <div class="panel panel-success">
               <div class="panel-heading">User</div>
               <div class="panel-body">
                 <form th:action="@{/enter}" method="post">
@@ -34,38 +34,38 @@
         </div>
         <div class="row">
           <div class="col-md-3">
-            <div class="panel panel-default">
+            <div class="panel panel-danger">
               <div class="panel-heading">Your message</div>
               <div class="panel-body">
                 <form th:action="@{/send}" method="post">
                   <textarea text="text" name="currentMessage"></textarea>
                   <p></p>
-                  <input type="submit" class="btn btn-primary" value="send"/>
+                  <input type="submit" class="btn btn-danger" value="send"/>
                   <a class="glyphicon glyphicon-refresh btn btn-default" type="submit" href="/"></a>
                 </form>
               </div>
             </div>
           </div>
           <div class="col-md-6">
-            <div class="panel panel-default">
+            <div class="panel panel-info">
               <div class="panel-heading">Chat</div>
               <div class="panel-body">
-               <table class="table table-striped">
-                <ul th:each="message : ${messages}">
-                  <li  th:text="${message.text}"></li>
-                  <span>Sent by</span>
-                  <mark>
-                    <span th:text="${message.username}"></span>
-                  </mark>
-                  <span>at</span>
-                 <span th:text="${message.timestamp}"></span>
-                </ul>
-               </table>
+                <div th:each="message : ${messages}">
+                  <div class="panel panel-info">
+                    <div class="panel-heading" th:text="${message.username}"></div>
+                    <div class="panel-body">
+                      <span th:text="${message.text}"></span>
+                      <div class="text-right">
+                        <span th:text="${message.timestamp}"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-             </div>
+            </div>
           </div>
           <div class="col-md-3">
-            <div class="panel panel-default">
+            <div class="panel panel-warning">
               <div class="panel-heading">Users</div>
               <div class="panel-body">
                 <ul th:each="message : ${messages}">
